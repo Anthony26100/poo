@@ -2,7 +2,7 @@
 
 class Homme extends Humain
 {
-    public $force = 2;
+    #public $force = 2;
 }
 
 class Femme extends Humain
@@ -15,22 +15,26 @@ class Femme extends Humain
 
 class Humain
 {
-    public $taille = 175;
-    public $nom;
+    public int $taille = 175;
+    public string $nom;
 
-    public $force = 1;
+    public int $force = 1;
 
-    private $secret;
+    private string $secret;
+
+    public static int $population = 0;
     public function __construct(
         string $nomDeFamille
     )
     {
+        echo self::$population++;
         #echo "Je suis né.e \n";
         echo $this->nom = $nomDeFamille."\n";
     }
 
     public function __destruct()
     {
+        echo self::$population--;
         #echo "Je suis mort.e \n";
     }
 
@@ -67,7 +71,7 @@ $adam = new Homme('ADAM');
 #echo "\n";
 #echo "La force de ".$adam->nom." est de : ".$adam->force;
 #echo "\n";
-echo $marcelline->faireEnfant();
+#echo $marcelline->faireEnfant();
 // impossible car il n'hérite pas de la class Femme ou ce trouve la méthode
 #echo $adam->faireEnfant();
 
