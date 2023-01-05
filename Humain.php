@@ -5,12 +5,13 @@ class Humain
     public $taille = 175;
     public $nom;
 
+    private $secret;
     public function __construct(
-        string $nom
+        string $nomDeFamille
     )
     {
-        $this->nom = $nom;
         echo "Je suis né.e \n";
+        echo $this->nom = $nomDeFamille."\n";
     }
 
     public function __destruct()
@@ -28,8 +29,18 @@ class Humain
        echo $this->taille+1;
     }
 
+    function setSecret(string $secret)
+    {
+        $this->secret = $secret;
+    }
+
+    function getSecret()
+    {
+        return $this->secret;
+    }
 }
-$constance = new Humain('constance');
-$marcelline = new Humain('marcelline');
-$marcelline->maTaille();
+$constance = new Humain('nomdefamilleConstance');
+$marcelline = new Humain('nomdefamilleMarcelline');
+$constance->setSecret("Je suis la phrase secret : de Constance \n");
+echo $constance->getSecret();
 unset($constance);
