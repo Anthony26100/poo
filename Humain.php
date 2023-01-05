@@ -1,20 +1,25 @@
 <?php
 
-class Homme extends Humain
-{
-    #public $force = 2;
-}
 
-class Femme extends Humain
+trait Bipede
 {
-    public function faireEnfant()
+    public function courrir() : void
     {
-        echo "Oui, je veux enfanter.";
+        echo "Je cours !";
     }
 }
 
-class Humain
+interface Mammifere
 {
+    public function pilosite(): string;
+}
+
+
+
+
+abstract class Humain implements Mammifere
+{
+    use Bipede;
     public int $taille = 175;
     public string $nom;
 
@@ -60,7 +65,31 @@ class Humain
         return $this->secret;
     }
 
+    // implematation Mammifere
 
+    public function pilosite(): string
+    {
+        return "J'ai du poil";
+    }
+
+}
+
+class Homme extends Humain
+{
+    #public $force = 2;
+}
+
+class Femme extends Humain
+{
+    public function faireEnfant()
+    {
+        echo "Oui, je veux enfanter.";
+    }
+
+    public function pilosite(): string
+    {
+        return "J'ai moins de poil que l'homme";
+    }
 }
 $constance = new Femme('CONSTANCE');
 $marcelline = new Femme('MARCELLINE');
@@ -74,4 +103,12 @@ $adam = new Homme('ADAM');
 #echo $marcelline->faireEnfant();
 // impossible car il n'hérite pas de la class Femme ou ce trouve la méthode
 #echo $adam->faireEnfant();
+// Instancier avec Abstract
 
+
+
+#$newHumain = new Humain();
+echo $marcelline->courrir()." ".$marcelline->nom;
+// affichage pilosite
+echo $marcelline->nom.$marcelline->pilosite();
+echo "\n".$adam->nom.$adam->pilosite();
