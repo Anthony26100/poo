@@ -7,7 +7,10 @@ class Homme extends Humain
 
 class Femme extends Humain
 {
-
+    public function faireEnfant()
+    {
+        echo "Oui, je veux enfanter.";
+    }
 }
 
 class Humain
@@ -59,10 +62,12 @@ $constance = new Femme('CONSTANCE');
 $marcelline = new Femme('MARCELLINE');
 $adam = new Homme('ADAM');
 #$constance->setSecret("Je suis la phrase secret : de Constance \n");
-echo $adam->marcher();
-echo "La force de ".$marcelline->nom." est de : ".$marcelline->force."\n";
-echo "\n";
-echo "La force de ".$adam->nom." est de : ".$adam->force;
-echo "\n";
-
+#echo $adam->marcher();
+#echo "La force de ".$marcelline->nom." est de : ".$marcelline->force."\n";
+#echo "\n";
+#echo "La force de ".$adam->nom." est de : ".$adam->force;
+#echo "\n";
+echo $marcelline->faireEnfant();
+// impossible car il n'hérite pas de la class Femme ou ce trouve la méthode
+#echo $adam->faireEnfant();
 
